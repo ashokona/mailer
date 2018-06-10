@@ -25,9 +25,11 @@ app.use(logger('dev'));
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
+app.use(bodyParser.json({limit:'50mb'}));       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ 
+  limit:'50mb',    // to support URL-encoded bodies
+  extended: true,
+  parameterLimit:50000
 })); 
 app.use(express.static(path.join(__dirname, 'public')));
 

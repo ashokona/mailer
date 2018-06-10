@@ -53,7 +53,7 @@ router.post('/uploadfile', function (req, res, next) {
               })
           })
           .catch((e) => {
-            console.log("drop error")
+            res.send({ status: "error", message:"Failed to import the file, Try again." });
             console.log(e);
           })
       } else {
@@ -72,7 +72,7 @@ router.post('/sendmails', function (req, res, next) {
   emails.find({}).lean(true)
     .then((results) => {
       if (results.length <= 0) {
-        res.send({ status: "warning", message: "no emails to send mail" })
+        res.send({ status: "warning", message: "No emails found! Upload some mails to start sending" })
       } else {
         var mailData = {
           subject: req.body.data.subject,
@@ -80,38 +80,32 @@ router.post('/sendmails', function (req, res, next) {
         }
         sendMails(mailData, results)
           .then((results) => {
-            res.send({ status: "success" })
+            res.send({ status: "success", message:"Succesfully sent mails."});
           })
           .catch((error) => {
-            console.log(error)
-            res.send({ status: "error" })
+            res.send({ status: "error", message:"Failed to send eamils, Try again."});
           })
       }
     })
     .catch((error) => {
-      console.log(error);
+      res.send({ status: "error", message:"Failed to send eamils, Try again."});
       res.send({ stauts: "error", message: "error" })
     })
 });
 
 var insertEmails = function (data) {
-  console.log(data);
   return new Promise((resolve, reject) => {
     emails.insertMany(data)
       .then((result) => {
-        console.log(result);
         resolve(result);
       })
       .catch((error) => {
-        console.log(error);
         reject(result);
       })
   })
 }
 
 var sendMails = function (mailData, mails) {
-  // console.log(mailData);
-  // console.log(mails);
   return new Promise((resolve, reject) => {
     async.mapSeries(mails, function (data, callback) {
       mailData.to = data.email;
@@ -125,10 +119,8 @@ var sendMails = function (mailData, mails) {
         })
     }, function (err, results) {
       if (err) {
-        console.log(err);
         reject(err);
       } else {
-        console.log(results);
         resolve(results)
       }
     });
