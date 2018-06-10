@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mailer</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-dismissible" id="alerts">
+          </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">Upload CSV file</div>
+          <div class="panel-body">
+            <table>
+              <tr>
+                <td>
+                  <label for="file">Choose a file :</label>
+                  <input type="file" id="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                </td>
+                <td>
+                  <br>
+                  <button type="button" class="btn btn-primary" id="uploadfile">Upload</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-warning">
+          <div class="panel-heading">Mail Content</div>
+          <div class="panel-body">
+            <!-- <form action="login" method="post"> -->
+            <div class="form-group">
+              <label for="subject">Mail Subject:</label>
+              <input type="text" class="form-control" name="subject" id="subject">
+            </div>
+            <div class="form-group">
+              <label for="body">Mail Body:</label>
+              <!-- <input type="password" class="form-control" name="password" id="pwd"> -->
+              <textarea class="form-control" rows="5" name="body" id="body"></textarea>
+            </div>
+            <button type="submit" id="sendmails" class="btn btn-default pull-right">Send</button>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./javascripts/script.js"></script>
+</body>
+
+</html>
