@@ -10,8 +10,8 @@ var MailService = function(data) {
             service: 'gmail',
             host: 'smtp.gmail.com',
             auth: {
-              user: 'ashokona@gmail.com',
-              pass: 'F!ghtClub'
+              user: 'email',
+              pass: 'password'
             }
           }));
                 // let transporter = nodemailer.createTransport("SMTP",{
